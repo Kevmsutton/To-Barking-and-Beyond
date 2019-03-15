@@ -7,10 +7,6 @@ class JourneyList extends React.Component {
     console.log(trips.journeys);
     return (
       <div>
-        {/* <button onClick={() => getFirstStationId("balham", "bank")}>
-          {" "}
-          Click
-        </button> */}
         {trips.journeys.map(journey => (
           <JourneyCard key={journey.startDateTime} journey={journey} />
         ))}

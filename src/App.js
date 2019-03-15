@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "./App.css";
 import JourneyList from "./JourneyList.js";
 import "tachyons";
+import PlannerForm from "./PlannerForm.js";
+import NavBar from "./Navbar";
 
 class App extends Component {
   state = {
@@ -11,7 +13,7 @@ class App extends Component {
     stationTwoId: null
   };
 
-  getFirstStationId(stationOne, stationTwo) {
+  getFirstStationId = (stationOne, stationTwo) => {
     const app_id = "b4a85c72";
     const app_key = "477d4bfa78405cbb4359d721fc31dd92";
     fetch(
@@ -24,7 +26,7 @@ class App extends Component {
         )
       )
       .then(() => console.log(this.state.stationOneId));
-  }
+  };
 
   getSecondStationId(stationTwo) {
     const app_id = "b4a85c72";
@@ -59,19 +61,10 @@ class App extends Component {
     const { isLoaded, trips } = this.state;
     return (
       <div>
-        {isLoaded ? (
-          <JourneyList
-            trips={trips}
-            getFirstStationId={this.getFirstStationId}
-          />
-        ) : (
-          "Loading"
-        )}
-        <div>
-          <button onClick={() => this.getFirstStationId("balham", "bank")}>
-            Click
-          </button>
-        </div>
+        <PlannerForm getFirstStationId={this.getFirstStationId} />
+        {isLoaded ? <JourneyList trips={trips} /> : ""}
+        <NavBar />
+        <div />
       </div>
     );
   }
