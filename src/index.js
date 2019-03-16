@@ -3,10 +3,6 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
-const API_KEY = process.env.REACT_APP_API_KEY_JP_APP;
-
-console.log(API_KEY);
-
 ReactDOM.render(<App />, document.getElementById("root"));
 
 // If you want your app to work offline and load faster, you can change

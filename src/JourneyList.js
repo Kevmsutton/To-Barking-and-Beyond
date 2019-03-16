@@ -3,12 +3,12 @@ import JourneyCard from "./JourneyCard.js";
 
 class JourneyList extends React.Component {
   render() {
-    const { trips, getFirstStationId } = this.props;
+    const { trips } = this.props;
     console.log(trips.journeys);
     return (
       <div>
-        {trips.journeys.map(journey => (
-          <JourneyCard key={journey.startDateTime} journey={journey} />
+        {trips.journeys.map((journey, index) => (
+          <JourneyCard key={index} journey={journey} />
         ))}
       </div>
     );

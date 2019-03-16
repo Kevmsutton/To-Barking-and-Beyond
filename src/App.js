@@ -3,7 +3,13 @@ import "./App.css";
 import JourneyList from "./JourneyList.js";
 import "tachyons";
 import PlannerForm from "./PlannerForm.js";
-import NavBar from "./Navbar";
+import NavBar from "./NavBar.js";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Signup from "./Signup.js";
+import Login from "./Login.js";
+
+const app_id = process.env.REACT_APP_API_KEY_JP_APP_Id;
+const app_key = process.env.REACT_APP_API_KEY_JP_APP;
 
 class App extends Component {
   state = {
@@ -14,8 +20,6 @@ class App extends Component {
   };
 
   getFirstStationId = (stationOne, stationTwo) => {
-    const app_id = "b4a85c72";
-    const app_key = "477d4bfa78405cbb4359d721fc31dd92";
     fetch(
       `https://api.tfl.gov.uk/StopPoint/Search?query=${stationOne}&app_id=${app_id}&app_key=${app_key}`
     )
@@ -29,8 +33,6 @@ class App extends Component {
   };
 
   getSecondStationId(stationTwo) {
-    const app_id = "b4a85c72";
-    const app_key = "477d4bfa78405cbb4359d721fc31dd92";
     fetch(
       `https://api.tfl.gov.uk/StopPoint/Search?query=${stationTwo}&app_id=${app_id}&app_key=${app_key}`
     )
@@ -42,8 +44,6 @@ class App extends Component {
   }
 
   getJourneyData() {
-    const app_id = "b4a85c72";
-    const app_key = "477d4bfa78405cbb4359d721fc31dd92";
     fetch(
       `https://api.tfl.gov.uk/journey/journeyresults/${
         this.state.stationOneId
@@ -60,12 +60,16 @@ class App extends Component {
   render() {
     const { isLoaded, trips } = this.state;
     return (
-      <div>
-        <PlannerForm getFirstStationId={this.getFirstStationId} />
-        {isLoaded ? <JourneyList trips={trips} /> : ""}
-        <NavBar />
-        <div />
-      </div>
+      <Router>
+        <div>
+          <NavBar />
+          <PlannerForm getFirstStationId={this.getFirstStationId} />
+          {isLoaded ? <JourneyList trips={trips} /> : ""}
+          <Route exact path="/" component={PlannerForm} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={Signup} />
+        </div>
+      </Router>
     );
   }
 }

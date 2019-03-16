@@ -1,9 +1,11 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 
 class PlannerForm extends React.Component {
   state = {
     to: "",
-    from: ""
+    from: "",
+    toResults: null
   };
 
   handleToChange = event => {
@@ -15,12 +17,15 @@ class PlannerForm extends React.Component {
   };
 
   handleFormSubmit = event => {
-    this.props.getFirstStationId(this.state.to, this.state.from);
     event.preventDefault();
+    this.setState({ toResults: true });
+    this.props.getFirstStationId(this.state.to, this.state.from);
   };
 
   render() {
-    console.log(this.props);
+    if (this.state.toResults === true) {
+      return <Redirect to="/results" />;
+    }
     return (
       <div className="bg-dark-red dib br3 pa3 ma2">
         <h3>Plan Your Journey</h3>
@@ -28,7 +33,7 @@ class PlannerForm extends React.Component {
           <input
             type="text"
             name="to"
-            placeholder="To..."
+            placeholder="From..."
             value={this.state.to}
             onChange={this.handleToChange}
           />
@@ -37,7 +42,7 @@ class PlannerForm extends React.Component {
           <input
             type="text"
             name="from"
-            placeholder="From..."
+            placeholder="To..."
             value={this.state.from}
             onChange={this.handleFromChange}
           />

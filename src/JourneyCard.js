@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 
 class JourneyCard extends React.Component {
   render() {
@@ -10,12 +11,12 @@ class JourneyCard extends React.Component {
           height="300"
           width="300"
         />
-        <p>Depart: {journey.startDateTime}</p>
+        <p>Depart: {moment(journey.startDateTime).format("LT")}</p>
         <p>Duration: {journey.duration} mins</p>
         <p>Fare: {journey.fare ? journey.fare.totalCost : "0"} pence</p>
         <ul>
-          {journey.legs.map(leg => (
-            <li>
+          {journey.legs.map((leg, index) => (
+            <li key={index}>
               {leg.mode.name} from: {leg.departurePoint.commonName}
               <br />
               take the: {leg.instruction.summary}
@@ -23,7 +24,7 @@ class JourneyCard extends React.Component {
             </li>
           ))}
         </ul>
-        <p>Arrive: {journey.arrivalDateTime}</p>
+        <p>Arrive: {moment(journey.arrivalDateTime).format("LT")}</p>
       </div>
     );
   }
