@@ -10,6 +10,7 @@ class JourneyCard extends React.Component {
           src="https://cdn.dribbble.com/users/200656/screenshots/3266438/london-tube.gif"
           height="300"
           width="300"
+          alt="Tube"
         />
         <p>Depart: {moment(journey.startDateTime).format("LT")}</p>
         <p>Duration: {journey.duration} mins</p>

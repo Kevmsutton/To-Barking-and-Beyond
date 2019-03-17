@@ -7,3 +7,7 @@
   height: 80px;
   background: #3c4749;
 }
+
+.Navbar h3 {
+  margin: 0px;
+}

@@ -57,17 +57,30 @@ class App extends Component {
       );
   }
 
+  isLoadedToFalsey() {
+    this.setState({ isLoaded: false });
+  }
+
   render() {
     const { isLoaded, trips } = this.state;
     return (
       <Router>
         <div>
-          <NavBar />
-          <PlannerForm getFirstStationId={this.getFirstStationId} />
-          {isLoaded ? <JourneyList trips={trips} /> : ""}
-          <Route exact path="/" component={PlannerForm} />
+          <NavBar isLoadedToFalsey={this.isLoadedToFalsey} />
+          {/* passing props to planner form */}
+          <Route
+            exact
+            path="/"
+            render={props => (
+              <PlannerForm
+                {...props}
+                getFirstStationId={this.getFirstStationId}
+              />
+            )}
+          />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
+          {isLoaded ? <JourneyList trips={trips} /> : ""}
         </div>
       </Router>
     );
