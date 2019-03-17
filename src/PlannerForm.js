@@ -1,5 +1,6 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
+import { Button } from "reactstrap";
 
 class PlannerForm extends React.Component {
   state = {
@@ -48,7 +49,7 @@ class PlannerForm extends React.Component {
           />
           <br />
           <br />
-          <button onClick={event => this.handleFormSubmit(event)}>Now</button>
+          <Button onClick={event => this.handleFormSubmit(event)}>Now</Button>
         </form>
       </div>
     );

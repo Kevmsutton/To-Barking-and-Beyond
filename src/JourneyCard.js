@@ -18,9 +18,9 @@ class JourneyCard extends React.Component {
         <ul>
           {journey.legs.map((leg, index) => (
             <li key={index}>
-              {leg.mode.name} from: {leg.departurePoint.commonName}
+              {leg.mode.name} : {leg.departurePoint.commonName}
               <br />
-              take the: {leg.instruction.summary}
+              {leg.instruction.summary}
               <br />
             </li>
           ))}

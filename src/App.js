@@ -7,6 +7,7 @@ import NavBar from "./NavBar.js";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Signup from "./Signup.js";
 import Login from "./Login.js";
+import { Button } from "reactstrap";
 
 const app_id = process.env.REACT_APP_API_KEY_JP_APP_Id;
 const app_key = process.env.REACT_APP_API_KEY_JP_APP;
