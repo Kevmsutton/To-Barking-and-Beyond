@@ -7,7 +7,6 @@ import NavBar from "./NavBar.js";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Signup from "./Signup.js";
 import Login from "./Login.js";
-import { Button } from "reactstrap";
 
 const app_id = process.env.REACT_APP_API_KEY_JP_APP_Id;
 const app_key = process.env.REACT_APP_API_KEY_JP_APP;
@@ -17,7 +16,8 @@ class App extends Component {
     isLoaded: false,
     trips: null,
     stationOneId: null,
-    stationTwoId: null
+    stationTwoId: null,
+    date: null
   };
 
   getFirstStationId = (stationOne, stationTwo) => {
@@ -76,6 +76,7 @@ class App extends Component {
               <PlannerForm
                 {...props}
                 getFirstStationId={this.getFirstStationId}
+                date={this.state.date}
               />
             )}
           />
@@ -89,3 +90,5 @@ class App extends Component {
 }
 
 export default App;
+
+// `https://api.tfl.gov.uk/journey/journeyresults/1000266/to/1000013?Date=20190328&Time=1215&AccessibilityPreference=stepfreetovehicle&Mode=bus&app_id=b4a85c72&app_key=477d4bfa78405cbb4359d721fc31dd92`;

@@ -5,11 +5,11 @@ class JourneyCard extends React.Component {
   render() {
     const { journey } = this.props;
     return (
-      <div className="bg-dark-red dib br3 pa3 ma2">
+      <div className="bg-dark-red dib br4 pa5 ma5">
         <img
           src="https://cdn.dribbble.com/users/200656/screenshots/3266438/london-tube.gif"
-          height="300"
-          width="300"
+          height="400"
+          width="400"
           alt="Tube"
         />
         <p>Depart: {moment(journey.startDateTime).format("LT")}</p>

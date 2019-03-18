@@ -1,12 +1,18 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 import { Button } from "reactstrap";
+import DateTimePicker from "react-widgets/lib/DateTimePicker";
 
 class PlannerForm extends React.Component {
   state = {
     to: "",
     from: "",
-    toResults: null
+    toResults: null,
+    date: null,
+    time: new Date().toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit"
+    })
   };
 
   handleToChange = event => {
@@ -23,12 +29,21 @@ class PlannerForm extends React.Component {
     this.props.getFirstStationId(this.state.to, this.state.from);
   };
 
+  handleDateChange = event => {
+    this.setState({ date: event.target.value.replace(/-/gi, "") });
+  };
+
+  handleTimeChange = event => {
+    this.setState({ time: event.target.value });
+  };
+
   render() {
+    console.log(this.state.date);
     if (this.state.toResults === true) {
       return <Redirect to="/results" />;
     }
     return (
-      <div className="bg-dark-red dib br3 pa3 ma2">
+      <div className="bg-dark-red dib br4 pa4 ma4">
         <h3>Plan Your Journey</h3>
         <form>
           <input
@@ -50,6 +65,17 @@ class PlannerForm extends React.Component {
           <br />
           <br />
           <Button onClick={event => this.handleFormSubmit(event)}>Now</Button>
+          <br />
+          <br />
+          <input type="date" onChange={this.handleDateChange} />
+          <input
+            type="time"
+            value={this.state.time}
+            onChange={this.handleTimeChange}
+          />
+          <br />
+          <br />
+          <Button onClick={event => this.handleFormSubmit(event)}>Later</Button>
         </form>
       </div>
     );
