@@ -1,18 +1,13 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 import { Button } from "reactstrap";
-import DateTimePicker from "react-widgets/lib/DateTimePicker";
 
 class PlannerForm extends React.Component {
   state = {
     to: "",
     from: "",
     toResults: null,
-    date: null,
-    time: new Date().toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit"
-    })
+    checkBox: false
   };
 
   handleToChange = event => {
@@ -29,16 +24,16 @@ class PlannerForm extends React.Component {
     this.props.getFirstStationId(this.state.to, this.state.from);
   };
 
-  handleDateChange = event => {
-    this.setState({ date: event.target.value.replace(/-/gi, "") });
-  };
-
-  handleTimeChange = event => {
-    this.setState({ time: event.target.value });
-  };
-
   render() {
-    console.log(this.state.date);
+    const {
+      handleDateChange,
+      handleTimeChange,
+      handleStepFreeChange,
+      time,
+      date
+    } = this.props;
+
+    console.log(date);
     if (this.state.toResults === true) {
       return <Redirect to="/results" />;
     }
@@ -67,15 +62,23 @@ class PlannerForm extends React.Component {
           <Button onClick={event => this.handleFormSubmit(event)}>Now</Button>
           <br />
           <br />
-          <input type="date" onChange={this.handleDateChange} />
-          <input
-            type="time"
-            value={this.state.time}
-            onChange={this.handleTimeChange}
-          />
+          <input type="date" onChange={handleDateChange} />
+          <input type="time" onChange={handleTimeChange} />
           <br />
           <br />
           <Button onClick={event => this.handleFormSubmit(event)}>Later</Button>
+          <br />
+          <br />
+
+          <label>
+            <input
+              type="checkbox"
+              defaultChecked={this.state.checkBox}
+              onChange={handleStepFreeChange}
+            />
+            <br />
+            Step Free Access
+          </label>
         </form>
       </div>
     );

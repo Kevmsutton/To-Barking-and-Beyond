@@ -7,6 +7,7 @@ import NavBar from "./NavBar.js";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Signup from "./Signup.js";
 import Login from "./Login.js";
+import LocationSearchInput from "./LocationSearchInput.js";
 
 const app_id = process.env.REACT_APP_API_KEY_JP_APP_Id;
 const app_key = process.env.REACT_APP_API_KEY_JP_APP;
@@ -17,7 +18,9 @@ class App extends Component {
     trips: null,
     stationOneId: null,
     stationTwoId: null,
-    date: null
+    date: "",
+    time: "",
+    stepFreeCheckBox: false
   };
 
   getFirstStationId = (stationOne, stationTwo) => {
@@ -45,10 +48,16 @@ class App extends Component {
   }
 
   getJourneyData() {
+    const stepFreeAccess = this.state.stepFreeCheckBox
+      ? "&AccessibilityPreference=StepFreeToVehicle"
+      : "";
     fetch(
       `https://api.tfl.gov.uk/journey/journeyresults/${
         this.state.stationOneId
-      }/to/${this.state.stationTwoId}?app_id=${app_id}&app_key=${app_key}`
+      }/to/${this.state.stationTwoId}?${this.state.date}${
+        this.state.time
+      }${stepFreeAccess}
+      &app_id=${app_id}&app_key=${app_key}`
     )
       .then(resp => resp.json())
       .then(journeyData =>
@@ -58,15 +67,28 @@ class App extends Component {
       );
   }
 
+  handleDateChange = event => {
+    this.setState({ date: `Date=${event.target.value.replace(/-/gi, "")}` });
+  };
+
+  handleTimeChange = event => {
+    this.setState({ time: `&Time=${event.target.value.replace(/:/gi, "")}&` });
+  };
+
   isLoadedToFalsey() {
     this.setState({ isLoaded: false });
   }
+
+  handleStepFreeChange = () => {
+    this.setState({ stepFreeCheckBox: !this.state.stepFreeCheckBox });
+  };
 
   render() {
     const { isLoaded, trips } = this.state;
     return (
       <Router>
         <div>
+          <LocationSearchInput />
           <NavBar isLoadedToFalsey={this.isLoadedToFalsey} />
           {/* passing props to planner form */}
           <Route
@@ -76,7 +98,12 @@ class App extends Component {
               <PlannerForm
                 {...props}
                 getFirstStationId={this.getFirstStationId}
+                handleDateChange={this.handleDateChange}
+                handleTimeChange={this.handleTimeChange}
+                time={this.state.time}
                 date={this.state.date}
+                handleStepFreeChange={this.handleStepFreeChange}
+                stepFreeCheckBox={this.state.stepFreeCheckBox}
               />
             )}
           />
@@ -90,5 +117,3 @@ class App extends Component {
 }
 
 export default App;
-
-// `https://api.tfl.gov.uk/journey/journeyresults/1000266/to/1000013?Date=20190328&Time=1215&AccessibilityPreference=stepfreetovehicle&Mode=bus&app_id=b4a85c72&app_key=477d4bfa78405cbb4359d721fc31dd92`;

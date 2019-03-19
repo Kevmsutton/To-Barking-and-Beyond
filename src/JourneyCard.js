@@ -12,7 +12,7 @@ class JourneyCard extends React.Component {
           width="400"
           alt="Tube"
         />
-        <p>Depart: {moment(journey.startDateTime).format("LT")}</p>
+        <p>Depart: {moment(journey.startDateTime).format("LLLL")}</p>
         <p>Duration: {journey.duration} mins</p>
         <p>Fare: {journey.fare ? journey.fare.totalCost : "0"} pence</p>
         <ul>
