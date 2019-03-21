@@ -6,8 +6,7 @@ class PlannerForm extends React.Component {
   state = {
     to: "",
     from: "",
-    toResults: null,
-    checkBox: false
+    toResults: null
   };
 
   handleToChange = event => {
@@ -29,6 +28,11 @@ class PlannerForm extends React.Component {
       handleDateChange,
       handleTimeChange,
       handleStepFreeChange,
+      stepFreeCheckBox,
+      busCheckBox,
+      tubeCheckBox,
+      handleBusChange,
+      handleTubeChange,
       time,
       date
     } = this.props;
@@ -73,11 +77,31 @@ class PlannerForm extends React.Component {
           <label>
             <input
               type="checkbox"
-              defaultChecked={this.state.checkBox}
+              defaultChecked={stepFreeCheckBox}
               onChange={handleStepFreeChange}
             />
             <br />
             Step Free Access
+          </label>
+          <br />
+          <label>
+            <input
+              type="checkbox"
+              defaultChecked={busCheckBox}
+              onChange={handleBusChange}
+            />
+            <br />
+            Bus Only
+          </label>
+          <br />
+          <label>
+            <input
+              type="checkbox"
+              defaultChecked={tubeCheckBox}
+              onChange={handleTubeChange}
+            />
+            <br />
+            Tube Only
           </label>
         </form>
       </div>

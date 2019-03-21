@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Signup from "./Signup.js";
 import Login from "./Login.js";
 import LocationSearchInput from "./LocationSearchInput.js";
+import SavedJourneys from "./SavedJourneys.js";
 
 const app_id = process.env.REACT_APP_API_KEY_JP_APP_Id;
 const app_key = process.env.REACT_APP_API_KEY_JP_APP;
@@ -20,7 +21,10 @@ class App extends Component {
     stationTwoId: null,
     date: "",
     time: "",
-    stepFreeCheckBox: false
+    stepFreeCheckBox: false,
+    busCheckBox: false,
+    tubeCheckBox: false,
+    modes: []
   };
 
   getFirstStationId = (stationOne, stationTwo) => {
@@ -47,16 +51,19 @@ class App extends Component {
       .then(() => this.getJourneyData());
   }
 
-  getJourneyData() {
+  getJourneyData = () => {
     const stepFreeAccess = this.state.stepFreeCheckBox
       ? "&AccessibilityPreference=StepFreeToVehicle"
       : "";
+    const bus = this.state.busCheckBox ? "&Mode=bus" : "";
+    const tube = this.state.tubeCheckBox ? "&Mode=tube" : "";
+    // can incorp chosing various modes of transport with https://api.tfl.gov.uk/Journey/JourneyResults/1000149/to/1000266?mode=bus, tube&app_id=b4a85c72&app_key=477d4bfa78405cbb4359d721fc31dd92
     fetch(
       `https://api.tfl.gov.uk/journey/journeyresults/${
         this.state.stationOneId
       }/to/${this.state.stationTwoId}?${this.state.date}${
         this.state.time
-      }${stepFreeAccess}
+      }${stepFreeAccess}${bus}${tube}
       &app_id=${app_id}&app_key=${app_key}`
     )
       .then(resp => resp.json())
@@ -65,7 +72,7 @@ class App extends Component {
           console.log(this.state.trips)
         )
       );
-  }
+  };
 
   handleDateChange = event => {
     this.setState({ date: `Date=${event.target.value.replace(/-/gi, "")}` });
@@ -81,6 +88,14 @@ class App extends Component {
 
   handleStepFreeChange = () => {
     this.setState({ stepFreeCheckBox: !this.state.stepFreeCheckBox });
+  };
+
+  handleBusChange = () => {
+    this.setState({ busCheckBox: !this.state.busCheckBox });
+  };
+
+  handleTubeChange = () => {
+    this.setState({ tubeCheckBox: !this.state.tubeCheckBox });
   };
 
   render() {
@@ -104,11 +119,16 @@ class App extends Component {
                 date={this.state.date}
                 handleStepFreeChange={this.handleStepFreeChange}
                 stepFreeCheckBox={this.state.stepFreeCheckBox}
+                handleTubeChange={this.handleTubeChange}
+                handleBusChange={this.handleBusChange}
+                busCheckBox={this.state.busCheckBox}
+                tubeCheckBox={this.state.tubeCheckBox}
               />
             )}
           />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
+          <Route exact path="/savedjourneys" component={SavedJourneys} />
           {isLoaded ? <JourneyList trips={trips} /> : ""}
         </div>
       </Router>
