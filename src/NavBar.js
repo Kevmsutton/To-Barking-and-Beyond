@@ -28,7 +28,7 @@ class NavBar extends React.Component {
     return (
       <div>
         <Navbar color="inverse" light expand="md">
-          <NavbarBrand href="/">JourneyPlanner</NavbarBrand>
+          <NavbarBrand href="/">TBAB</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="" navbar>

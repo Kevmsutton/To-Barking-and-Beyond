@@ -15,6 +15,7 @@ const app_key = process.env.REACT_APP_API_KEY_JP_APP;
 
 class App extends Component {
   state = {
+    username: "",
     isLoaded: false,
     trips: null,
     stationOneId: null,
@@ -128,7 +129,20 @@ class App extends Component {
           />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
-          <Route exact path="/savedjourneys" component={SavedJourneys} />
+          <Route
+            exact
+            path="/savedjourneys"
+            render={props =>
+              trips ? (
+                ""
+              ) : (
+                <SavedJourneys
+                  {...props}
+                  getFirstStationId={this.getFirstStationId}
+                />
+              )
+            }
+          />
           {isLoaded ? <JourneyList trips={trips} /> : ""}
         </div>
       </Router>
