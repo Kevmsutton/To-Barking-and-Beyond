@@ -11,9 +11,9 @@ class SavedJourneys extends React.Component {
   };
 
   componentDidMount() {
-    fetch(`http://localhost:3000/journeys/`)
+    fetch(`http://localhost:3000/users/1/`)
       .then(resp => resp.json())
-      .then(data => this.setState({ savedJourneys: data }));
+      .then(data => this.setState({ savedJourneys: data.journeys }));
   }
 
   handleToChange = event => {

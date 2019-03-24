@@ -20,7 +20,7 @@ def decoded_token
 end
 
 def secret
-    ENV['MY_SECRET']
+    ENV['TBAB_SECRET']
 end
 
 end

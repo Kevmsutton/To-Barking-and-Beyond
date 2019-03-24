@@ -9,6 +9,7 @@ import Signup from "./Signup.js";
 import Login from "./Login.js";
 import LocationSearchInput from "./LocationSearchInput.js";
 import SavedJourneys from "./SavedJourneys.js";
+import API from "./API.js";
 
 const app_id = process.env.REACT_APP_API_KEY_JP_APP_Id;
 const app_key = process.env.REACT_APP_API_KEY_JP_APP;
@@ -27,6 +28,26 @@ class App extends Component {
     tubeCheckBox: false,
     modes: []
   };
+
+  signin = user => {
+    localStorage.setItem("token", user.token);
+    this.setState({ username: user.username });
+  };
+
+  // signout = () => {
+  //   localStorage.removeItem("token");
+  //   this.setState({ username: "" });
+  // };
+
+  // validateAPI = () => {
+  //   API.validate().then(userData => {
+  //     if (userData.error) {
+  //       this.signout();
+  //     } else {
+  //       this.signin(userData);
+  //     }
+  //   });
+  // };
 
   getFirstStationId = (stationOne, stationTwo) => {
     fetch(
@@ -127,18 +148,25 @@ class App extends Component {
               />
             )}
           />
-          <Route exact path="/login" component={Login} />
+          <Route
+            exact
+            path="/login"
+            component={routerProps => (
+              <Login signin={this.signin} {...routerProps} />
+            )}
+          />
           <Route exact path="/signup" component={Signup} />
           <Route
             exact
             path="/savedjourneys"
-            render={props =>
+            component={props =>
               trips ? (
                 ""
               ) : (
                 <SavedJourneys
                   {...props}
                   getFirstStationId={this.getFirstStationId}
+                  username={this.state.username}
                 />
               )
             }
