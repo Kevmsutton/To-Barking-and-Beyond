@@ -5,19 +5,31 @@ import { Button } from "reactstrap";
 class SaveJourneyForm extends React.Component {
   render() {
     console.log(this.props);
+
     return (
       <div className="bg-dark-red dib br4 pa4 ma4">
         <h3>Save a Journey</h3>
         <form>
           <input
             type="text"
-            name="to"
+            name="name"
+            placeholder="Name of Journey"
+            value={this.props.from}
+            onChange={this.props.handleNameChange}
+          />
+          <br />
+          <br />
+          <label>From: </label>
+          <input
+            type="text"
+            name="from"
             placeholder="From..."
             value={this.props.from}
             onChange={this.props.handleFromChange}
           />
           <br />
           <br />
+          <label>To: </label>
           <input
             type="text"
             name="from"

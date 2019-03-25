@@ -26,28 +26,36 @@ class App extends Component {
     stepFreeCheckBox: false,
     busCheckBox: false,
     tubeCheckBox: false,
-    modes: []
+    modes: [],
+    savedJourneys: []
   };
 
   signin = user => {
     localStorage.setItem("token", user.token);
     this.setState({ username: user.username });
+    this.savedJourneysFromAPI();
   };
 
-  // signout = () => {
-  //   localStorage.removeItem("token");
-  //   this.setState({ username: "" });
-  // };
+  signout = () => {
+    localStorage.removeItem("token");
+    this.setState({ username: "" });
+  };
 
-  // validateAPI = () => {
-  //   API.validate().then(userData => {
-  //     if (userData.error) {
-  //       this.signout();
-  //     } else {
-  //       this.signin(userData);
-  //     }
-  //   });
-  // };
+  componentDidMount() {
+    API.validate().then(userData => {
+      if (userData.error) {
+        this.signout();
+      } else {
+        this.signin(userData);
+      }
+    });
+  }
+
+  savedJourneysFromAPI = () => {
+    API.getJourneys().then(journeyData =>
+      this.setState({ savedJourneys: journeyData })
+    );
+  };
 
   getFirstStationId = (stationOne, stationTwo) => {
     fetch(
@@ -87,6 +95,25 @@ class App extends Component {
         this.state.time
       }${stepFreeAccess}${bus}${tube}
       &app_id=${app_id}&app_key=${app_key}`
+    )
+      .then(resp => resp.json())
+      .then(journeyData =>
+        this.setState({ trips: journeyData, isLoaded: true }, () =>
+          console.log(this.state.trips)
+        )
+      );
+  };
+
+  getSavedJourneyData = (
+    location_1_lat,
+    location_1_long,
+    location_2_lat,
+    location_2_long
+  ) => {
+    fetch(
+      `https://api.tfl.gov.uk/journey/journeyresults/${location_1_lat},
+      ${location_1_long}/to/${location_2_lat},
+      ${location_2_long}?app_id=${app_id}&app_key=${app_key}`
     )
       .then(resp => resp.json())
       .then(journeyData =>
@@ -165,8 +192,9 @@ class App extends Component {
               ) : (
                 <SavedJourneys
                   {...props}
-                  getFirstStationId={this.getFirstStationId}
+                  getSavedJourneyData={this.getSavedJourneyData}
                   username={this.state.username}
+                  savedJourneys={this.state.savedJourneys}
                 />
               )
             }

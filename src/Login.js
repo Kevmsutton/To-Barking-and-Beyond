@@ -1,5 +1,7 @@
 import React from "react";
 import { Button } from "reactstrap";
+import { Input } from "reactstrap";
+import API from "./API";
 
 class Login extends React.Component {
   state = {
@@ -7,50 +9,50 @@ class Login extends React.Component {
     password: ""
   };
 
-  handleSubmit = () => {};
-
-  handleNameChange = event => {
-    this.setState({ username: event.target.value });
+  handleSubmit = () => {
+    const { signin, history } = this.props;
+    const user = this.state;
+    API.signin(user).then(data => {
+      if (data.error) {
+        alert("something is wrong!");
+      } else {
+        signin(data);
+        history.push("/savedjourneys");
+      }
+    });
   };
 
-  handlePasswordChange = event => {
-    this.setState({ password: event.target.value });
-  };
+  handleChange = event =>
+    this.setState({ [event.target.name]: event.target.value });
 
   render() {
+    const { username, password } = this.state;
+    const { handleChange, handleSubmit } = this;
+
     return (
-      <div className="bg-dark-red dib br4 pa4 ma4">
-        <h3>Login</h3>
-        <form>
-          <input
-            type="text"
-            name="username"
-            placeholder="Username"
-            onChange={event => this.handleNameChange(event)}
-          />
-          <br />
-          <br />
-          <input
-            type="text"
-            name="password"
-            placeholder="Password"
-            onChange={event => this.handlePasswordChange(event)}
-          />
-          <br />
-          <br />
-          <Button
-            onClick={() =>
-              this.props.signin({
-                username: this.state.username,
-                password: this.state.password
-              })
-            }
-          >
-            Login
-          </Button>
-          <br />
-          <br />
-        </form>
+      <div>
+        <Input
+          id="usernameInput"
+          label="Username"
+          value={username}
+          onChange={handleChange}
+          margin="normal"
+          name="username"
+        />
+        <br />
+        <Input
+          id="passwordInput"
+          label="Password"
+          value={password}
+          onChange={handleChange}
+          margin="normal"
+          name="password"
+          type="password"
+        />
+        <br />
+        <Button onClick={handleSubmit} variant="contained" color="primary">
+          SUBMIT
+        </Button>
       </div>
     );
   }

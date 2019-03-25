@@ -3,17 +3,18 @@ class API {
     return fetch("http://localhost:3000/signin", {
       method: "POST",
       headers: {
-        "Content-Type": "Application/json"
+        "Content-Type": "application/json"
       },
       body: JSON.stringify(user)
-    }).then(resp => resp.json());
+    }).then(response => response.json());
   }
+
   static validate() {
-    return this.get(`http://localhost:3000/validate`);
+    return this.get("http://localhost:3000/validate");
   }
 
   static getJourneys() {
-    return this.get(`http://localhost:3000/journeys`);
+    return this.get("http://localhost:3000/journeys");
   }
 
   static get(url) {
@@ -21,7 +22,7 @@ class API {
       headers: {
         Authorization: localStorage.getItem("token")
       }
-    }).then(resp => resp.json());
+    }).then(response => response.json());
   }
 }
 

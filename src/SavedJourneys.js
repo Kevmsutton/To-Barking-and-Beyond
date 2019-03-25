@@ -6,15 +6,8 @@ class SavedJourneys extends React.Component {
   state = {
     to: "",
     from: "",
-    journeyIsSaved: null,
-    savedJourneys: []
+    journeyIsSaved: null
   };
-
-  componentDidMount() {
-    fetch(`http://localhost:3000/users/1/`)
-      .then(resp => resp.json())
-      .then(data => this.setState({ savedJourneys: data.journeys }));
-  }
 
   handleToChange = event => {
     this.setState({ to: event.target.value });
@@ -37,7 +30,7 @@ class SavedJourneys extends React.Component {
   // created and then stuff it in the savedJourneys array to be rendered!
 
   render() {
-    const { getFirstStationId } = this.props;
+    const { getSavedJourneyData } = this.props;
     console.log(this.props);
     return (
       <div>
@@ -46,10 +39,10 @@ class SavedJourneys extends React.Component {
           handleFromChange={this.handleFromChange}
           handleFormSubmit={this.handleFormSubmit}
         />
-        {this.state.savedJourneys ? (
+        {this.props.savedJourneys ? (
           <ListOfSavedJourneys
-            savedJourneys={this.state.savedJourneys}
-            getFirstStationId={getFirstStationId}
+            savedJourneys={this.props.savedJourneys}
+            getSavedJourneyData={getSavedJourneyData}
           />
         ) : (
           ""

@@ -3,15 +3,15 @@ import SavedJourneyCard from "./SavedJourneyCard.js";
 
 class ListofSavedJourneys extends React.Component {
   render() {
-    const { savedJourneys, getFirstStationId } = this.props;
-    console.log(getFirstStationId);
+    const { savedJourneys, getSavedJourneyData } = this.props;
+    console.log(getSavedJourneyData);
     return (
       <div>
         {savedJourneys.map(savedJourney => (
           <SavedJourneyCard
             key={savedJourney.id}
             savedJourney={savedJourney}
-            getFirstStationId={getFirstStationId}
+            getSavedJourneyData={getSavedJourneyData}
           />
         ))}
       </div>
