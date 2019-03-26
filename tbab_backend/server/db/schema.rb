@@ -17,6 +17,8 @@ ActiveRecord::Schema.define(version: 2019_03_20_165320) do
 
   create_table "journeys", force: :cascade do |t|
     t.string "journey_name"
+    t.string "addressOne"
+    t.string "addressTwo"
     t.float "location_1_lat"
     t.float "location_1_long"
     t.float "location_2_lat"

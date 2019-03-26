@@ -1,7 +1,6 @@
 import React from "react";
-import { Button } from "reactstrap";
-import { Input } from "reactstrap";
 import API from "./API";
+import { Form, FormGroup, Label, Input, Button, Row, Col } from "reactstrap";
 
 class Login extends React.Component {
   state = {
@@ -30,29 +29,35 @@ class Login extends React.Component {
     const { handleChange, handleSubmit } = this;
 
     return (
-      <div>
-        <Input
-          id="usernameInput"
-          label="Username"
-          value={username}
-          onChange={handleChange}
-          margin="normal"
-          name="username"
-        />
-        <br />
-        <Input
-          id="passwordInput"
-          label="Password"
-          value={password}
-          onChange={handleChange}
-          margin="normal"
-          name="password"
-          type="password"
-        />
-        <br />
-        <Button onClick={handleSubmit} variant="contained" color="primary">
-          SUBMIT
-        </Button>
+      <div className="signup">
+        <Form>
+          <FormGroup>
+            <Label for="repeat password"> UserName</Label>
+            <Input
+              id="usernameInput"
+              label="Username"
+              value={username}
+              onChange={handleChange}
+              margin="normal"
+              name="username"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="password">Password</Label>
+            <Input
+              id="passwordInput"
+              label="Password"
+              value={password}
+              onChange={handleChange}
+              margin="normal"
+              name="password"
+              type="password"
+            />
+          </FormGroup>
+          <Button onClick={handleSubmit} variant="contained" color="primary">
+            Login
+          </Button>
+        </Form>
       </div>
     );
   }

@@ -30,14 +30,36 @@ class SavedJourneys extends React.Component {
   // created and then stuff it in the savedJourneys array to be rendered!
 
   render() {
-    const { getSavedJourneyData } = this.props;
+    const {
+      getSavedJourneyData,
+      userId,
+      savedJourneysFromAPI,
+      trips,
+      isLoaded
+    } = this.props;
     console.log(this.props);
     return (
+      // <div>
+      //   {!trips ? (
+      //     <div>
+      //       <h3>Planning your trip...</h3>
+      //       <img
+      //         src="https://cdn.dribbble.com/users/200656/screenshots/3266438/london-tube.gif"
+      //         height="400"
+      //         width="400"
+      //         alt="Tube"
+      //       />
+      //     </div>
+      //   ) : (
+      //     ""
+      //   )}
       <div>
         <SaveJourneyForm
           handleToChange={this.handleToChange}
           handleFromChange={this.handleFromChange}
           handleFormSubmit={this.handleFormSubmit}
+          userId={userId}
+          savedJourneysFromAPI={savedJourneysFromAPI}
         />
         {this.props.savedJourneys ? (
           <ListOfSavedJourneys
@@ -48,6 +70,7 @@ class SavedJourneys extends React.Component {
           ""
         )}
       </div>
+      // </div>
     );
   }
 }

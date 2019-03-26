@@ -10,13 +10,16 @@ import Login from "./Login.js";
 import LocationSearchInput from "./LocationSearchInput.js";
 import SavedJourneys from "./SavedJourneys.js";
 import API from "./API.js";
+import Results from "./Results.js";
+import Footer from "./Footer.js";
 
 const app_id = process.env.REACT_APP_API_KEY_JP_APP_Id;
 const app_key = process.env.REACT_APP_API_KEY_JP_APP;
 
 class App extends Component {
   state = {
-    username: "",
+    userId: null,
+    username: null,
     isLoaded: false,
     trips: null,
     stationOneId: null,
@@ -27,24 +30,27 @@ class App extends Component {
     busCheckBox: false,
     tubeCheckBox: false,
     modes: [],
-    savedJourneys: []
+    savedJourneys: null
   };
 
   signin = user => {
     localStorage.setItem("token", user.token);
+    localStorage.setItem("userId", user.userId);
+    console.log(user);
     this.setState({ username: user.username });
+    this.setState({ userId: user.userId });
     this.savedJourneysFromAPI();
   };
 
-  signout = () => {
+  signOut = () => {
     localStorage.removeItem("token");
-    this.setState({ username: "" });
+    this.setState({ username: null, userId: null });
   };
 
   componentDidMount() {
     API.validate().then(userData => {
       if (userData.error) {
-        this.signout();
+        this.signOut();
       } else {
         this.signin(userData);
       }
@@ -152,8 +158,11 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <LocationSearchInput />
-          <NavBar isLoadedToFalsey={this.isLoadedToFalsey} />
+          <NavBar
+            isLoadedToFalsey={this.isLoadedToFalsey}
+            username={this.state.username}
+            signOut={this.signOut}
+          />
           {/* passing props to planner form */}
           <Route
             exact
@@ -177,6 +186,11 @@ class App extends Component {
           />
           <Route
             exact
+            path="/results"
+            render={props => <Results {...props} trips={this.state.trips} />}
+          />
+          <Route
+            exact
             path="/login"
             component={routerProps => (
               <Login signin={this.signin} {...routerProps} />
@@ -195,11 +209,16 @@ class App extends Component {
                   getSavedJourneyData={this.getSavedJourneyData}
                   username={this.state.username}
                   savedJourneys={this.state.savedJourneys}
+                  savedJourneysFromAPI={this.savedJourneysFromAPI}
+                  userId={this.state.userId}
+                  trips={this.state.trips}
+                  isLoaded={this.state.isLoaded}
                 />
               )
             }
           />
           {isLoaded ? <JourneyList trips={trips} /> : ""}
+          <Footer />
         </div>
       </Router>
     );

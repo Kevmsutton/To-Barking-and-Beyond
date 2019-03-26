@@ -2,12 +2,62 @@
   text-align: center;
 }
 
+body {
+  position: relative;
+  overflow: hidden;
+}
+
+body:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url("https://tfl.gov.uk/cdn/static/cms/images/tube-map.gif");
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+  opacity: 0.4;
+  z-index: -1;
+}
+
 .Navbar {
   width: 100%;
   height: 80px;
   background: #3c4749;
 }
 
-.Navbar h3 {
-  margin: 0px;
+.navbar {
+  margin-bottom: 40px;
+}
+
+.navText {
+  color: #cbd9da !important;
+}
+
+.signup {
+  margin: auto;
+  width: 400px;
+  border-style: none;
+  border-radius: 5px;
+  padding: 20px;
+  background-color: #af260d;
+  color: #cbd9da;
+}
+
+.footer {
+  border-top: "1px solid #ddd";
+  height: "60px";
+  line-height: "60px";
+  background-color: "white";
+  position: absolute;
+  top: 1000px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+#root {
+  padding-bottom: 60px;
 }

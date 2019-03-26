@@ -7,8 +7,9 @@ end
 
 def signin
     @user = User.find_by(username: params[:username])
+    puts @user
     if @user && @user.authenticate(params[:password])
-        render json: {username: @user.username, token: issue_token({id: @user.id})}
+        render json: {username: @user.username, userId: @user.id, token: issue_token({id: @user.id})}
     else 
         render json: {error: "Username/password combination invalid."}, status: 401
     end
@@ -17,7 +18,7 @@ end
 def validate
     @user = get_current_user
     if @user
-        render json: {username: @user.username, token: issue_token({id: @user.id})}
+        render json: {username: @user.username, userId: @user.id, token: issue_token({id: @user.id})}
     else 
         render json: {error: "Username/password combination invalid."}, status: 401
     end

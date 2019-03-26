@@ -1,40 +1,42 @@
 import React from "react";
 import PlacesAutocomplete, {
-  geocodeByAddress
+  geocodeByAddress,
+  getLatLng
 } from "react-places-autocomplete";
 
 class LocationSearchInput extends React.Component {
   state = {
     address: "",
-    results: ""
+    results: "",
+    latLng: null
   };
 
   handleChange = address => {
     this.setState({ address });
   };
 
-  handleSelect = address => {
-    geocodeByAddress(address).then(results => {
-      return results[0].address_components[0].long_name
-        .toLowerCase()
-        .includes("station")
-        ? this.setState({ address: results[0].address_components[0].long_name })
-        : "";
-    });
-    // .then(latLng => console.log("Success", latLng))
-    // .catch(error => console.error("Error", error));
-  };
-
   render() {
+    console.log(this.props);
     return (
       <PlacesAutocomplete
-        value={this.state.address}
-        onChange={this.handleChange}
-        onSelect={this.handleSelect}
+        value={
+          this.props.addressOne ? this.props.addressOne : this.props.addressTwo
+        }
+        onChange={
+          this.props.handleAddressChangeOne
+            ? this.props.handleAddressChangeOne
+            : this.props.handleAddressChangeTwo
+        }
+        onSelect={
+          this.props.handleSelectOne
+            ? this.props.handleSelectOne
+            : this.props.handleSelectTwo
+        }
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
           <div>
             <input
+              value={this.props.addressOne}
               {...getInputProps({
                 placeholder: "Search Places ...",
                 className: "location-search-input"
@@ -58,7 +60,7 @@ class LocationSearchInput extends React.Component {
                     })}
                   >
                     <span>
-                      {suggestion.description.toLowerCase().includes("station")
+                      {suggestion.description.toLowerCase().includes("uk")
                         ? suggestion.description
                         : ""}
                     </span>

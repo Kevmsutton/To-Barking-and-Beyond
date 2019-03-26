@@ -7,12 +7,7 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
-  Container,
-  Row,
-  Col,
-  Jumbotron,
-  Button
+  NavLink
 } from "reactstrap";
 
 class NavBar extends React.Component {
@@ -25,43 +20,51 @@ class NavBar extends React.Component {
     });
   };
   render() {
+    const { username, signOut } = this.props;
     return (
       <div>
-        <Navbar color="inverse" light expand="md">
-          <NavbarBrand href="/">TBAB</NavbarBrand>
+        <Navbar
+          style={{ backgroundColor: "#3C4749" }}
+          color="inverse"
+          dark
+          expand="md"
+        >
+          <NavbarBrand className="navText" href="/">
+            TBAB
+          </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="" navbar>
               <NavItem className="">
                 <NavLink
-                  className=""
+                  className="navText"
                   onClick={() => this.props.isLoadedToFalsey()}
                   href="/"
                 >
                   Plan A Journey
                 </NavLink>
               </NavItem>
-              <NavItem className="">
+              <NavItem>
                 <NavLink
-                  className=""
+                  className="navText"
                   onClick={() => this.props.isLoadedToFalsey()}
                   href="/SavedJourneys"
                 >
                   Saved Journeys
                 </NavLink>
               </NavItem>
-              <NavItem className="">
+              <NavItem className="navText">
                 <NavLink
-                  className=""
+                  className="navText"
                   onClick={() => this.props.isLoadedToFalsey()}
                   href="/maps"
                 >
                   Maps
                 </NavLink>
               </NavItem>
-              <NavItem className="">
+              <NavItem>
                 <NavLink
-                  className=""
+                  className="navText"
                   onClick={() => this.props.isLoadedToFalsey()}
                   href="/somethingelse"
                 >
@@ -70,22 +73,28 @@ class NavBar extends React.Component {
               </NavItem>
             </Nav>
             <Nav className="ml-auto" navbar>
+              {!username ? (
+                <NavItem>
+                  <NavLink className="navText" href="/Login/">
+                    Login
+                  </NavLink>
+                </NavItem>
+              ) : (
+                <NavItem>
+                  <NavLink className="navText" onClick={() => signOut()}>
+                    Logout
+                  </NavLink>
+                </NavItem>
+              )}
               <NavItem>
-                <NavLink href="/Login/">Login</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/Signup/">Signup</NavLink>
+                <NavLink className="navText" href="/Signup/">
+                  Signup
+                </NavLink>
               </NavItem>
             </Nav>
           </Collapse>
         </Navbar>
-        <Jumbotron>
-          <Container>
-            <Row>
-              <Col />
-            </Row>
-          </Container>
-        </Jumbotron>
+        <div className="navbar" />
       </div>
     );
   }

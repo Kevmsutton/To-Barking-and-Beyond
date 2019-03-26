@@ -8,6 +8,8 @@ class SavedJourneyCard extends React.Component {
     return (
       <div className="bg-dark-red dib br4 pa5 ma5">
         <p>Saved Journey Name: {savedJourney.journey_name.toUpperCase()}</p>
+        <p>From : {savedJourney.addressOne.toUpperCase()}</p>
+        <p>To: {savedJourney.addressTwo.toUpperCase()}</p>
         <Button
           onClick={() =>
             getSavedJourneyData(
