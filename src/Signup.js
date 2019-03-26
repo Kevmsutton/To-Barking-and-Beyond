@@ -2,6 +2,7 @@ import React from "react";
 import { Form, FormGroup, Label, Input, Button, Row, Col } from "reactstrap";
 import { Redirect } from "react-router-dom";
 import API from "./API.js";
+import LocationSearchInput from "./LocationSearchInput.js";
 
 class Signup extends React.Component {
   state = {

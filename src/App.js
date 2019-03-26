@@ -7,7 +7,6 @@ import NavBar from "./NavBar.js";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Signup from "./Signup.js";
 import Login from "./Login.js";
-import LocationSearchInput from "./LocationSearchInput.js";
 import SavedJourneys from "./SavedJourneys.js";
 import API from "./API.js";
 import Results from "./Results.js";
@@ -30,7 +29,8 @@ class App extends Component {
     busCheckBox: false,
     tubeCheckBox: false,
     modes: [],
-    savedJourneys: null
+    savedJourneys: null,
+    toResults: null
   };
 
   signin = user => {
@@ -69,9 +69,11 @@ class App extends Component {
     )
       .then(resp => resp.json())
       .then(station =>
-        this.setState({ stationOneId: station.matches[0].icsId }, () =>
-          this.getSecondStationId(stationTwo)
-        )
+        station.matches[0]
+          ? this.setState({ stationOneId: station.matches[0].icsId }, () =>
+              this.getSecondStationId(stationTwo)
+            )
+          : alert("Your From station does not exist")
       )
       .then(() => console.log(this.state.stationOneId));
   };
@@ -82,7 +84,9 @@ class App extends Component {
     )
       .then(resp => resp.json())
       .then(station =>
-        this.setState({ stationTwoId: station.matches[0].icsId })
+        station.matches[0]
+          ? this.setState({ stationTwoId: station.matches[0].icsId })
+          : alert("Your TO station does not exist")
       )
       .then(() => this.getJourneyData());
   }

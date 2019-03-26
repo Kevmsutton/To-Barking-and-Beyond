@@ -24,7 +24,6 @@ body:after {
 
 .Navbar {
   width: 100%;
-  height: 80px;
   background: #3c4749;
 }
 
@@ -60,4 +59,8 @@ body:after {
 
 #root {
   padding-bottom: 60px;
+}
+
+.buttonFloatRight {
+  float: right;
 }
