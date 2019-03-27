@@ -3,24 +3,25 @@
 }
 
 body {
+  background-image: url("tube-map.png");
   position: relative;
   overflow: hidden;
 }
 
-body:after {
+/* body:after {
   content: "";
   display: block;
   position: absolute;
   top: 0;
   left: 0;
-  background-image: url("https://tfl.gov.uk/cdn/static/cms/images/tube-map.gif");
+  background-image: url("tube-map.png");
   background-repeat: no-repeat;
   background-position: center;
   width: 100%;
   height: 100%;
   opacity: 0.4;
   z-index: -1;
-}
+} */
 
 .Navbar {
   width: 100%;
@@ -45,16 +46,28 @@ body:after {
   color: #cbd9da;
 }
 
+.planner {
+  margin-top: 5%;
+  margin-left: 10%;
+  width: 400px;
+  border-style: none;
+  border-radius: 5px;
+  padding: 20px;
+  background-color: #af260d;
+  color: #cbd9da;
+}
+
 .footer {
-  border-top: "1px solid #ddd";
-  height: "60px";
-  line-height: "60px";
-  background-color: "white";
-  position: absolute;
-  top: 1000px;
+  height: 60px;
+  position: fixed;
   left: 0;
   bottom: 0;
-  right: 0;
+  width: 100%;
+  background-color: #3c4749;
+  text-align: center;
+  color: #cbd9da;
+  opacity: 0.7;
+  padding-top: 20px;
 }
 
 #root {
@@ -63,4 +76,88 @@ body:after {
 
 .buttonFloatRight {
   float: right;
+}
+
+.map {
+  position: absolute;
+  right: 10%;
+  top: 5%;
+  margin-top: 5%;
+  margin-left: 10%;
+  width: 650px;
+  height: 650px;
+  border-style: none;
+  border-radius: 5px;
+  padding: 20px;
+  background-color: #3c9cfc;
+  color: #cbd9da;
+}
+
+.innermap {
+  position: absolute;
+  right: 4%;
+  top: 5%;
+  width: 600px;
+  height: 600px;
+  border-style: none;
+  border-radius: 5px;
+  padding: 20px;
+  background-color: #af260d;
+  color: #cbd9da;
+  padding-top: 40px;
+}
+
+.saveJform {
+  position: absolute;
+  margin-top: 10%;
+  margin-left: 10%;
+  width: 275px;
+  border-style: none;
+  border-radius: 5px;
+  padding: 20px;
+  background-color: #af260d;
+  color: #cbd9da;
+}
+
+/* .saveJourneyText {
+  margin: auto;
+  width: 400px;
+  height: 80px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #3c9cfc;
+  color: #cbd9da;
+  opacity: 0.8;
+} */
+
+.location-search-input {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.savedJCard {
+  position: relative;
+  margin-bottom: 20px;
+  margin-left: 800px;
+  width: 275px;
+  border-style: none;
+  border-radius: 5px;
+  padding: 40px;
+  background-color: #af260d;
+  color: #cbd9da;
+}
+
+.jCard {
+  margin: auto;
+  justify-content: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  width: 80%;
+  height: 200px;
+  border-style: none;
+  border-radius: 5px;
+  padding: 40px;
+  background-color: #af260d;
+  color: #cbd9da;
 }

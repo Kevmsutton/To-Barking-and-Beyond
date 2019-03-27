@@ -74,10 +74,15 @@ class SaveJourneyForm extends React.Component {
     console.log(this.props);
 
     return (
-      <div className="bg-dark-red dib br4 pa4 ma4">
+      // <div>
+      //   <div className="saveJourneyText">
+      //     Please Login To Save or acces a saved journey
+      //   </div>
+      <div className="saveJform">
         <h3>Save a Journey</h3>
         <form>
           <input
+            className="location-search-input"
             type="text"
             name="name"
             placeholder="Name of Journey"
@@ -92,6 +97,7 @@ class SaveJourneyForm extends React.Component {
             handleAddressChangeOne={this.handleAddressChangeOne}
             addressOne={this.state.addressOne}
           />
+          <br />
           <label>To: </label>
           <LocationSearchInput
             handleSelectTwo={this.handleSelectTwo}
@@ -99,12 +105,17 @@ class SaveJourneyForm extends React.Component {
             addressTwo={this.state.addressTwo}
           />
           <br />
-          <br />
-          <Button onClick={() => this.saveJourneyToDB()}>Save Journey</Button>
+          <Button
+            className="buttonFloatRight"
+            onClick={() => this.saveJourneyToDB()}
+          >
+            Save Journey
+          </Button>
           <br />
           <br />
         </form>
       </div>
+      // </div>
     );
   }
 }

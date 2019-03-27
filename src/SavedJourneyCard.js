@@ -6,7 +6,7 @@ class SavedJourneyCard extends React.Component {
     const { savedJourney, getSavedJourneyData } = this.props;
     console.log(savedJourney, getSavedJourneyData);
     return (
-      <div className="bg-dark-red dib br4 pa5 ma5">
+      <div className="savedJCard">
         <p>Saved Journey Name: {savedJourney.journey_name.toUpperCase()}</p>
         <p>From : {savedJourney.addressOne.toUpperCase()}</p>
         <p>To: {savedJourney.addressTwo.toUpperCase()}</p>

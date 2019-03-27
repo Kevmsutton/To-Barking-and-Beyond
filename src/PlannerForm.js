@@ -1,6 +1,7 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 import { Form, FormGroup, Label, Input, Button, CustomInput } from "reactstrap";
+import Map from "./Map.js";
 
 class PlannerForm extends React.Component {
   state = {
@@ -42,7 +43,7 @@ class PlannerForm extends React.Component {
       return <Redirect to="/results" />;
     }
     return (
-      <div className="signup">
+      <div className="planner">
         <h3>Plan Your Journey</h3>
         <Form>
           <FormGroup>

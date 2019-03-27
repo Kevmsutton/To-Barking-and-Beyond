@@ -5,15 +5,11 @@ class JourneyCard extends React.Component {
   render() {
     const { journey } = this.props;
     return (
-      <div className="bg-dark-red dib br4 pa5 ma5">
-        <img
-          src="https://cdn.dribbble.com/users/200656/screenshots/3266438/london-tube.gif"
-          height="400"
-          width="400"
-          alt="Tube"
-        />
+      <div className="jCard">
         <p>Depart: {moment(journey.startDateTime).format("LLLL")}</p>
+        <br />
         <p>Duration: {journey.duration} mins</p>
+        <br />
         <p>Fare: {journey.fare ? journey.fare.totalCost : "0"} pence</p>
         <ul>
           {journey.legs.map((leg, index) => (

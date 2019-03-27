@@ -11,6 +11,7 @@ import SavedJourneys from "./SavedJourneys.js";
 import API from "./API.js";
 import Results from "./Results.js";
 import Footer from "./Footer.js";
+import Map from "./Map.js";
 
 const app_id = process.env.REACT_APP_API_KEY_JP_APP_Id;
 const app_key = process.env.REACT_APP_API_KEY_JP_APP;
@@ -172,20 +173,23 @@ class App extends Component {
             exact
             path="/"
             render={props => (
-              <PlannerForm
-                {...props}
-                getFirstStationId={this.getFirstStationId}
-                handleDateChange={this.handleDateChange}
-                handleTimeChange={this.handleTimeChange}
-                time={this.state.time}
-                date={this.state.date}
-                handleStepFreeChange={this.handleStepFreeChange}
-                stepFreeCheckBox={this.state.stepFreeCheckBox}
-                handleTubeChange={this.handleTubeChange}
-                handleBusChange={this.handleBusChange}
-                busCheckBox={this.state.busCheckBox}
-                tubeCheckBox={this.state.tubeCheckBox}
-              />
+              <div>
+                <PlannerForm
+                  {...props}
+                  getFirstStationId={this.getFirstStationId}
+                  handleDateChange={this.handleDateChange}
+                  handleTimeChange={this.handleTimeChange}
+                  time={this.state.time}
+                  date={this.state.date}
+                  handleStepFreeChange={this.handleStepFreeChange}
+                  stepFreeCheckBox={this.state.stepFreeCheckBox}
+                  handleTubeChange={this.handleTubeChange}
+                  handleBusChange={this.handleBusChange}
+                  busCheckBox={this.state.busCheckBox}
+                  tubeCheckBox={this.state.tubeCheckBox}
+                />
+                <Map />
+              </div>
             )}
           />
           <Route
