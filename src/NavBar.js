@@ -59,7 +59,7 @@ class NavBar extends React.Component {
                   onClick={() => this.props.isLoadedToFalsey()}
                   href="/SavedJourneys"
                 >
-                  Saved Journeys
+                  My Journeys
                 </NavLink>
               </NavItem>
               <NavItem className="navText">

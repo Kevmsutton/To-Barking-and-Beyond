@@ -85,12 +85,12 @@ class App extends Component {
     )
       .then(resp => resp.json())
       .then(station =>
-        station.matches[0]
-          ? this.setState({ stationOneId: station.matches[0].icsId }, () =>
-              this.getSecondStationId(stationTwo)
-            )
-          : alert(
+        station.matches[0] === undefined
+          ? alert(
               "Your From station does not exist. Try again or watch this gif forever"
+            )
+          : this.setState({ stationOneId: station.matches[0].icsId }, () =>
+              this.getSecondStationId(stationTwo)
             )
       )
       .then(() => console.log(this.state.stationOneId));
@@ -102,9 +102,11 @@ class App extends Component {
     )
       .then(resp => resp.json())
       .then(station =>
-        station.matches[0]
-          ? this.setState({ stationTwoId: station.matches[0].icsId })
-          : alert("Your TO station does not exist so you've broken me")
+        station.matches[0] === undefined
+          ? alert(
+              "Your TO station does not exist so you've broken me. Try again or watch this gif forever"
+            )
+          : this.setState({ stationTwoId: station.matches[0].icsId })
       )
       .then(() => this.getJourneyData());
   }

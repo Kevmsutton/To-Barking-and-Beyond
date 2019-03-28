@@ -12,8 +12,8 @@ const postUrl = `http://localhost:3000/journeys/`;
 class SaveJourneyForm extends React.Component {
   state = {
     journeyName: null,
-    addressOne: "",
-    addressTwo: "",
+    addressOne: null,
+    addressTwo: null,
     results: "",
     latLngOne: null,
     latLngTwo: null
@@ -50,7 +50,10 @@ class SaveJourneyForm extends React.Component {
   };
 
   saveJourneyToDB = () => {
-    this.props.userId
+    this.props.userId &&
+    this.state.journeyName &&
+    this.state.addressOne &&
+    this.state.addressTwo
       ? fetch(postUrl, {
           method: "POST",
           headers: {
@@ -69,7 +72,7 @@ class SaveJourneyForm extends React.Component {
         })
           .then(response => response.json())
           .then(() => this.props.savedJourneysFromAPI())
-      : alert("You have to login to save a journey");
+      : alert("You have to complete all fields and login to save a journey");
   };
 
   render() {

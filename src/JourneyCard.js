@@ -6,7 +6,7 @@ class JourneyCard extends React.Component {
     const { journey } = this.props;
     return (
       <div className="jCard">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Underground.svg/1200px-Underground.svg.png" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Underground.svg/200px-Underground.svg.png" />
         <br />
         <br />
         <p>Depart: {moment(journey.startDateTime).format("LLLL")}</p>
