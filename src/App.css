@@ -5,7 +5,6 @@
 body {
   background-image: url("tube-map.png");
   position: relative;
-  overflow: hidden;
 }
 
 /* body:after {
@@ -55,6 +54,7 @@ body {
   padding: 20px;
   background-color: #af260d;
   color: #cbd9da;
+  clear: both;
 }
 
 .footer {
@@ -79,6 +79,7 @@ body {
 }
 
 .map {
+  float: right;
   position: absolute;
   right: 10%;
   top: 5%;
@@ -109,7 +110,7 @@ body {
 
 .saveJform {
   position: absolute;
-  margin-top: 10%;
+  margin-top: 4%;
   margin-left: 10%;
   width: 275px;
   border-style: none;
@@ -147,17 +148,143 @@ body {
   color: #cbd9da;
 }
 
-.jCard {
-  margin: auto;
-  justify-content: flex-start;
+.jCardContainer {
   display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-  width: 80%;
-  height: 200px;
+  justify-content: center;
+  margin: auto;
+  width: 1000px;
+  border-style: solid;
+  border-radius: 5px;
+  background-color: white;
+  border-color: #af260d;
+  opacity: 0.95;
+  color: #cbd9da;
+}
+
+.jCard {
+  border: #cbd9da;
+  border-radius: 5px;
+  border: 5px;
+  border-style: solid;
+  border-color: #3c9cfc;
+  margin: 10px;
+  background-color: #3c9cfc;
+  color: white;
+  opacity: 0.9;
+}
+
+.waitingGif {
+  margin: auto;
+  width: 550px;
   border-style: none;
   border-radius: 5px;
-  padding: 40px;
+  padding: 50px;
   background-color: #af260d;
   color: #cbd9da;
+  text-align: center;
+}
+
+.sJCardContainer {
+  position: absolute;
+  margin-left: 30%;
+  margin-top: 0%;
+  width: 60%;
+  height: 650px;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: #af260d;
+  background-color: white;
+  opacity: 0.9;
+  color: #cbd9da;
+}
+
+.sJCard {
+  margin-right: 0;
+  width: 175px;
+  margin: 10px;
+  height: 300px;
+  border: #cbd9da;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: #af260d;
+  padding: 4px;
+  background-color: #3c9cfc;
+  color: white;
+  opacity: 0.8;
+}
+
+.lineStatusContainer {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 550px;
+  border-style: none;
+  border-radius: 5px;
+  padding: 50px;
+  background-color: #af260d;
+  color: #cbd9da;
+  text-align: center;
+}
+
+.victoria {
+  background-color: #3c9cfc;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.northern {
+  background-color: black;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.Central {
+  background-color: rgb(220, 36, 31);
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.bakerloo {
+  background-color: rgb(178, 99, 0);
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.circle {
+  background-color: rgb(255, 211, 41);
+  border-radius: 5px;
+  margin: 5px;
+  color: #3c4749;
+}
+
+.Jubilee {
+  background-color: rgb(161, 165, 167);
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.District {
+  background-color: rgb(0, 125, 50);
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.DLR {
+  background-color: #00b2a9;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.Metropolitan {
+  background-color: rgb(155, 0, 88);
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.Piccadilly {
+  background-color: rgb(0, 25, 168);
+  border-radius: 5px;
+  margin: 5px;
 }

@@ -83,7 +83,7 @@ class PlannerForm extends React.Component {
             className="buttonFloatRight"
             onClick={event => this.handleFormSubmit(event)}
           >
-            Later
+            Go Later
           </Button>
           <br />
           <br />

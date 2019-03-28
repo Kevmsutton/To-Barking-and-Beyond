@@ -6,7 +6,7 @@ class ListofSavedJourneys extends React.Component {
     const { savedJourneys, getSavedJourneyData } = this.props;
     console.log(getSavedJourneyData);
     return (
-      <div>
+      <div className="sJCardContainer">
         {savedJourneys.map(savedJourney => (
           <SavedJourneyCard
             key={savedJourney.id}

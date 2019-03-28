@@ -30,7 +30,7 @@ class NavBar extends React.Component {
           expand="md"
         >
           <NavbarBrand className="navText" href="/">
-            TBAB
+            ToBarkingAndBeyond
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
@@ -48,6 +48,15 @@ class NavBar extends React.Component {
                 <NavLink
                   className="navText"
                   onClick={() => this.props.isLoadedToFalsey()}
+                  href="/linestatus"
+                >
+                  Line Status
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  className="navText"
+                  onClick={() => this.props.isLoadedToFalsey()}
                   href="/SavedJourneys"
                 >
                   Saved Journeys
@@ -56,19 +65,10 @@ class NavBar extends React.Component {
               <NavItem className="navText">
                 <NavLink
                   className="navText"
-                  onClick={() => this.props.isLoadedToFalsey()}
-                  href="/maps"
+                  href="https://traintimes.org.uk/map/tube/schematic/"
+                  target="_blank"
                 >
-                  Maps
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink
-                  className="navText"
-                  onClick={() => this.props.isLoadedToFalsey()}
-                  href="/somethingelse"
-                >
-                  SomethingElse
+                  Watch Tubes Fly
                 </NavLink>
               </NavItem>
             </Nav>

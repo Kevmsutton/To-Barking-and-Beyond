@@ -6,7 +6,7 @@ class JourneyList extends React.Component {
     const { trips } = this.props;
     console.log(trips.journeys);
     return (
-      <div>
+      <div className="jCardContainer">
         {trips.journeys.map((journey, index) => (
           <JourneyCard key={index} journey={journey} />
         ))}

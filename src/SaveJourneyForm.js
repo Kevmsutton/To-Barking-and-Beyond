@@ -50,24 +50,26 @@ class SaveJourneyForm extends React.Component {
   };
 
   saveJourneyToDB = () => {
-    fetch(postUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        journey_name: this.state.journeyName,
-        addressOne: this.state.addressOne,
-        addressTwo: this.state.addressTwo,
-        location_1_lat: this.state.latLngOne.lat,
-        location_1_long: this.state.latLngOne.lng,
-        location_2_lat: this.state.latLngTwo.lat,
-        location_2_long: this.state.latLngTwo.lng,
-        user_id: this.props.userId
-      })
-    })
-      .then(response => response.json())
-      .then(() => this.props.savedJourneysFromAPI());
+    this.props.userId
+      ? fetch(postUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            journey_name: this.state.journeyName,
+            addressOne: this.state.addressOne,
+            addressTwo: this.state.addressTwo,
+            location_1_lat: this.state.latLngOne.lat,
+            location_1_long: this.state.latLngOne.lng,
+            location_2_lat: this.state.latLngTwo.lat,
+            location_2_long: this.state.latLngTwo.lng,
+            user_id: this.props.userId
+          })
+        })
+          .then(response => response.json())
+          .then(() => this.props.savedJourneysFromAPI())
+      : alert("You have to login to save a journey");
   };
 
   render() {

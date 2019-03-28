@@ -6,7 +6,7 @@ class Results extends React.Component {
     return (
       <div>
         {!trips ? (
-          <div>
+          <div className="waitingGif">
             <h3>Planning your trip...</h3>
             <img
               src="https://cdn.dribbble.com/users/200656/screenshots/3266438/london-tube.gif"
