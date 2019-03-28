@@ -64,29 +64,6 @@ class PlannerForm extends React.Component {
               onChange={this.handleFromChange}
             />
           </FormGroup>
-          <Button
-            className="buttonFloatRight"
-            onClick={event => this.handleFormSubmit(event)}
-          >
-            Go Now
-          </Button>
-          <br />
-          <Label>Date</Label>
-          <FormGroup>
-            <Input type="date" onChange={handleDateChange} />
-          </FormGroup>
-          <FormGroup>
-            <Input type="time" onChange={handleTimeChange} />
-          </FormGroup>
-
-          <Button
-            className="buttonFloatRight"
-            onClick={event => this.handleFormSubmit(event)}
-          >
-            Go Later
-          </Button>
-          <br />
-          <br />
           <FormGroup>
             <Label for="exampleCheckbox">Options</Label>
             <CustomInput
@@ -114,6 +91,29 @@ class PlannerForm extends React.Component {
               onChange={handleTubeChange}
             />
           </FormGroup>
+          <Button
+            className="buttonFloatRight"
+            onClick={event => this.handleFormSubmit(event)}
+          >
+            Go Now
+          </Button>
+          <br />
+          <Label>Date</Label>
+          <FormGroup>
+            <Input type="date" onChange={handleDateChange} />
+          </FormGroup>
+          <FormGroup>
+            <Input type="time" onChange={handleTimeChange} />
+          </FormGroup>
+
+          <Button
+            className="buttonFloatRight"
+            onClick={event => this.handleFormSubmit(event)}
+          >
+            Go Later
+          </Button>
+          <br />
+          <br />
         </Form>
       </div>
     );

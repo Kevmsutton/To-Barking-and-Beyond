@@ -11,7 +11,7 @@ import SavedJourneys from "./SavedJourneys.js";
 import API from "./API.js";
 import Results from "./Results.js";
 import Footer from "./Footer.js";
-import Map from "./Map.js";
+import JPMap from "./Map.js";
 import LineStatus from "./LineStatus.js";
 
 const app_id = process.env.REACT_APP_API_KEY_JP_APP_Id;
@@ -207,7 +207,7 @@ class App extends Component {
                   busCheckBox={this.state.busCheckBox}
                   tubeCheckBox={this.state.tubeCheckBox}
                 />
-                <Map />
+                <JPMap />
               </div>
             )}
           />
