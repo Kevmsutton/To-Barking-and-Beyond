@@ -3,7 +3,11 @@ import SavedJourneyCard from "./SavedJourneyCard.js";
 
 class ListofSavedJourneys extends React.Component {
   render() {
-    const { savedJourneys, getSavedJourneyData } = this.props;
+    const {
+      savedJourneys,
+      getSavedJourneyData,
+      savedJourneysFromAPI
+    } = this.props;
     console.log(getSavedJourneyData);
     return (
       <div className="sJCardContainer">
@@ -12,6 +16,7 @@ class ListofSavedJourneys extends React.Component {
             key={savedJourney.id}
             savedJourney={savedJourney}
             getSavedJourneyData={getSavedJourneyData}
+            savedJourneysFromAPI={savedJourneysFromAPI}
           />
         ))}
       </div>

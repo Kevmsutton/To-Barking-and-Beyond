@@ -13,23 +13,12 @@ import Results from "./Results.js";
 import Footer from "./Footer.js";
 import JPMap from "./Map.js";
 import LineStatus from "./LineStatus.js";
+import moment from "moment";
+
+var current_time = new moment().format("HH:mm");
 
 const app_id = process.env.REACT_APP_API_KEY_JP_APP_Id;
 const app_key = process.env.REACT_APP_API_KEY_JP_APP;
-
-const urls = [
-  "https://api.tfl.gov.uk/Line/victoria/Status?app_id=b4a85c72&app_key=477d4bfa78405cbb4359d721fc31dd92",
-  "https://api.tfl.gov.uk/Line/northern/Status?app_id=b4a85c72&app_key=477d4bfa78405cbb4359d721fc31dd92",
-  "https://api.tfl.gov.uk/Line/circle/Status?app_id=b4a85c72&app_key=477d4bfa78405cbb4359d721fc31dd92",
-  "https://api.tfl.gov.uk/Line/bakerloo/Status?app_id=b4a85c72&app_key=477d4bfa78405cbb4359d721fc31dd92",
-  "https://api.tfl.gov.uk/Line/central/Status?app_id=b4a85c72&app_key=477d4bfa78405cbb4359d721fc31dd92",
-  "https://api.tfl.gov.uk/Line/jubilee/Status?app_id=b4a85c72&app_key=477d4bfa78405cbb4359d721fc31dd92",
-  "https://api.tfl.gov.uk/Line/jubilee/Status?app_id=b4a85c72&app_key=477d4bfa78405cbb4359d721fc31dd92",
-  "https://api.tfl.gov.uk/Line/district/Status?app_id=b4a85c72&app_key=477d4bfa78405cbb4359d721fc31dd92",
-  "https://api.tfl.gov.uk/Line/dlr/Status?app_id=b4a85c72&app_key=477d4bfa78405cbb4359d721fc31dd92",
-  "https://api.tfl.gov.uk/Line/metropolitan/Status?app_id=b4a85c72&app_key=477d4bfa78405cbb4359d721fc31dd92",
-  "https://api.tfl.gov.uk/Line/piccadilly/Status?app_id=b4a85c72&app_key=477d4bfa78405cbb4359d721fc31dd92"
-];
 
 class App extends Component {
   state = {
@@ -40,7 +29,7 @@ class App extends Component {
     stationOneId: null,
     stationTwoId: null,
     date: "",
-    time: "",
+    time: current_time,
     stepFreeCheckBox: false,
     busCheckBox: false,
     tubeCheckBox: false,

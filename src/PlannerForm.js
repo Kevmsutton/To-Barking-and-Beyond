@@ -1,7 +1,6 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 import { Form, FormGroup, Label, Input, Button, CustomInput } from "reactstrap";
-import Map from "./Map.js";
 
 class PlannerForm extends React.Component {
   state = {
@@ -34,8 +33,8 @@ class PlannerForm extends React.Component {
       tubeCheckBox,
       handleBusChange,
       handleTubeChange,
-      time,
-      date
+      date,
+      time
     } = this.props;
 
     console.log(date);
@@ -45,7 +44,7 @@ class PlannerForm extends React.Component {
     return (
       <div className="planner">
         <h3>Plan Your Journey</h3>
-        <Form>
+        <Form onSubmit={event => this.handleFormSubmit(event)}>
           <FormGroup>
             <Input
               type="text"
@@ -53,6 +52,7 @@ class PlannerForm extends React.Component {
               placeholder="From..."
               value={this.state.to}
               onChange={this.handleToChange}
+              required
             />
           </FormGroup>
           <FormGroup>
@@ -62,6 +62,7 @@ class PlannerForm extends React.Component {
               placeholder="To..."
               value={this.state.from}
               onChange={this.handleFromChange}
+              required
             />
           </FormGroup>
           <FormGroup>
@@ -91,10 +92,7 @@ class PlannerForm extends React.Component {
               onChange={handleTubeChange}
             />
           </FormGroup>
-          <Button
-            className="buttonFloatRight"
-            onClick={event => this.handleFormSubmit(event)}
-          >
+          <Button type="submit" className="buttonFloatRight">
             Go Now
           </Button>
           <br />
@@ -106,10 +104,7 @@ class PlannerForm extends React.Component {
             <Input type="time" onChange={handleTimeChange} />
           </FormGroup>
 
-          <Button
-            className="buttonFloatRight"
-            onClick={event => this.handleFormSubmit(event)}
-          >
+          <Button type="submit" className="buttonFloatRight">
             Go Later
           </Button>
           <br />

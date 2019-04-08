@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import {
   Collapse,
   Navbar,
@@ -86,11 +85,15 @@ class NavBar extends React.Component {
                   </NavLink>
                 </NavItem>
               )}
-              <NavItem>
-                <NavLink className="navText" href="/Signup/">
-                  Signup
-                </NavLink>
-              </NavItem>
+              {!this.props.username ? (
+                <NavItem>
+                  <NavLink className="navText" href="/Signup/">
+                    Signup
+                  </NavLink>
+                </NavItem>
+              ) : (
+                <NavItem />
+              )}
             </Nav>
           </Collapse>
         </Navbar>

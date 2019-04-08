@@ -1,8 +1,5 @@
 import React from "react";
 import { Form, FormGroup, Label, Input, Button, Row, Col } from "reactstrap";
-import { Redirect } from "react-router-dom";
-import API from "./API.js";
-import LocationSearchInput from "./LocationSearchInput.js";
 
 class Signup extends React.Component {
   state = {
@@ -38,7 +35,8 @@ class Signup extends React.Component {
     this.setState({ confirmPassword: event.target.value });
   };
 
-  handleFormSubmit = () => {
+  handleFormSubmit = event => {
+    event.preventDefault();
     this.state.password !== this.state.confirmPassword
       ? alert("Passwords do not match")
       : fetch(`http://localhost:3000/users`, {
@@ -53,25 +51,31 @@ class Signup extends React.Component {
             username: this.state.username,
             password: this.state.password
           })
-        }).then(response => console.log(response));
-    alert("Signup succesful, please login");
-    this.props.history.push("/login");
+        })
+          .then(resp => resp.json())
+          .then(data => {
+            data.id
+              ? alert("You have succesfully created an account please login")
+              : alert("User name already exists");
+            this.props.history.push("/login");
+          });
   };
 
   render() {
     return (
       <div className="signup">
-        <Form>
+        <Form onSubmit={event => this.handleFormSubmit(event)}>
           <Row form>
             <Col md={6}>
               <FormGroup>
                 <Label for="firstName">First Name</Label>
                 <Input
                   onChange={event => this.firstNameHandleChange(event)}
-                  type="first name"
+                  type="string"
                   name="first name"
                   id="first name"
                   placeholder=""
+                  required
                 />
               </FormGroup>
             </Col>
@@ -80,26 +84,31 @@ class Signup extends React.Component {
                 <Label for="lastName">Last Name</Label>
                 <Input
                   onChange={event => this.lastNameHandleChange(event)}
-                  type="first name"
+                  type="string"
                   name="first name"
                   id="first name"
                   placeholder=""
+                  required
                 />
               </FormGroup>
             </Col>
           </Row>
           <FormGroup>
-            <Label for="userName">User Name</Label>
-            <Input onChange={event => this.userNameHandleChange(event)} />
+            <Label for="username">username</Label>
+            <Input
+              onChange={event => this.userNameHandleChange(event)}
+              required
+            />
           </FormGroup>
           <FormGroup>
             <Label for="email">Email</Label>
-            <Input onChange={event => this.emailHandleChange(event)} />
+            <Input onChange={event => this.emailHandleChange(event)} required />
           </FormGroup>
           <FormGroup>
             <Label for="password">Password</Label>
             <Input
               onChange={event => this.passwordHandleChange(event)}
+              required
               type="password"
               name="password"
             />
@@ -110,9 +119,10 @@ class Signup extends React.Component {
               onChange={event => this.handleConfirmPassword(event)}
               type="password"
               name="password"
+              required
             />
           </FormGroup>
-          <Button onClick={() => this.handleFormSubmit()}>Submit</Button>
+          <Button type="submit">Submit</Button>
         </Form>
       </div>
     );

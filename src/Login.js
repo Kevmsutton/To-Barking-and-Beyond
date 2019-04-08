@@ -1,6 +1,6 @@
 import React from "react";
 import API from "./API";
-import { Form, FormGroup, Label, Input, Button, Row, Col } from "reactstrap";
+import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 
 class Login extends React.Component {
   state = {
@@ -32,7 +32,7 @@ class Login extends React.Component {
       <div className="signup">
         <Form>
           <FormGroup>
-            <Label for="repeat password"> UserName</Label>
+            <Label for="repeat password"> username</Label>
             <Input
               id="usernameInput"
               label="Username"

@@ -1,11 +1,7 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
 import { Button } from "reactstrap";
 import LocationSearchInput from "./LocationSearchInput.js";
-import PlacesAutocomplete, {
-  geocodeByAddress,
-  getLatLng
-} from "react-places-autocomplete";
+import { geocodeByAddress, getLatLng } from "react-places-autocomplete";
 
 const postUrl = `http://localhost:3000/journeys/`;
 

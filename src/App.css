@@ -189,14 +189,9 @@ body {
   margin-left: 30%;
   margin-top: 0%;
   width: 60%;
-  height: 650px;
+  height: 700px;
   display: flex;
   flex-wrap: wrap;
-  border-radius: 5px;
-  border-style: solid;
-  border-color: #af260d;
-  background-color: white;
-  opacity: 0.9;
   color: #cbd9da;
 }
 
@@ -204,14 +199,23 @@ body {
   margin-right: 0;
   width: 175px;
   margin: 10px;
-  height: 300px;
+  height: 50%;
   border: #cbd9da;
   border-radius: 5px;
   border-style: solid;
   border-color: #af260d;
   padding: 4px;
   background-color: #3c9cfc;
-  color: #3c4749;
+  color: white;
+}
+
+.sjBox {
+  border-style: solid;
+  border-top: black;
+  border-left: black;
+  border-right: black;
+  border-color: #cbd9da;
+  border-radius: 5px;
 }
 
 .lineStatusContainer {

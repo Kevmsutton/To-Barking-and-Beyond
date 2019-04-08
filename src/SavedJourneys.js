@@ -30,13 +30,7 @@ class SavedJourneys extends React.Component {
   // created and then stuff it in the savedJourneys array to be rendered!
 
   render() {
-    const {
-      getSavedJourneyData,
-      userId,
-      savedJourneysFromAPI,
-      trips,
-      isLoaded
-    } = this.props;
+    const { getSavedJourneyData, userId, savedJourneysFromAPI } = this.props;
     console.log(this.props);
     return (
       // <div>
@@ -65,6 +59,7 @@ class SavedJourneys extends React.Component {
           <ListOfSavedJourneys
             savedJourneys={this.props.savedJourneys}
             getSavedJourneyData={getSavedJourneyData}
+            savedJourneysFromAPI={savedJourneysFromAPI}
           />
         ) : (
           ""

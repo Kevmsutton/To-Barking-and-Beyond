@@ -1,12 +1,6 @@
 import React from "react";
-import {
-  Map,
-  InfoWindow,
-  Marker,
-  GoogleApiWrapper,
-  Autocomplete
-} from "google-maps-react";
-import LocationSearchInput from "./LocationSearchInput";
+import { Map, Marker, GoogleApiWrapper, Autocomplete } from "google-maps-react";
+// import LocationSearchInput from "./LocationSearchInput";
 
 const JPapp_key = process.env.REACT_APP_API_KEY_JP_Goog;
 
